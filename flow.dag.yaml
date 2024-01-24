@@ -1,0 +1,31 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  text:
+    type: string
+    default: りんご
+outputs:
+  output_prompt:
+    type: string
+    reference: ${echo_my_prompt.output}
+nodes:
+  - name: llm_node_fuor
+    type: llm
+    source:
+      type: code
+      path: llm_node_fuor.jinja2
+    inputs:
+      model: gpt-3.5-turbo-instruct
+      text: ${inputs.text}
+      max_tokens: 100
+    connection: to_replace_with_connection_name
+    api: completion
+  - name: echo_my_prompt
+    type: python
+    source:
+      type: code
+      path: output.py
+    inputs:
+      input1: ${llm_node_fuor.output}
+    aggregation: false

@@ -1,0 +1,28 @@
+{
+  "package": {},
+  "code": {
+    "llm_node_fuor.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "text": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "llm_node_fuor.jinja2"
+    },
+    "output.py": {
+      "type": "python",
+      "inputs": {
+        "input1": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "output.py",
+      "function": "my_python_tool"
+    }
+  }
+}
